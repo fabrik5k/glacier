@@ -50,3 +50,22 @@ Ele verifica se existem arquivos no storage que não pertencem a nenhum snapshot
 2. **Warning** quando orphan files ≥ 1GB
 3. **Crítico** quando orphan files ≥ 100GB
 
+---
+
+Funcionalidade: **Configuração de Health Checks**
+Permite definir os limites e regras utilizados para avaliar a saúde das tabelas. Como diferentes empresas possuem volumes de dados e padrões operacionais distintos, os thresholds dos checks não devem ser fixos. Essa seção permite ajustar os valores que determinam quando um check está saudável, em alerta ou crítico.
+
+Cada health check pode ter seus próprios parâmetros configuráveis. Por exemplo, no check de small files é possível definir qual tamanho médio de arquivo é considerado saudável, qual faixa representa alerta e qual caracteriza uma situação crítica. O mesmo pode ser configurado para número de snapshots, quantidade de manifests, proporção de delete files ou volume de orphan files.
+
+As configurações podem ser aplicadas em diferentes níveis. Elas podem ser globais para todo o sistema, aplicadas a um catálogo ou schema específico, ou definidas individualmente para uma tabela. Isso permite que diferentes tipos de dados tenham regras de monitoramento diferentes.
+
+A interface também deve mostrar os valores atualmente configurados para cada check, permitindo que sejam alterados facilmente quando necessário.
+
+Níveis de avaliação:
+
+1. **Saudável** quando a métrica da tabela está dentro do limite considerado seguro
+2. **Warning** quando a métrica ultrapassa o limite de alerta configurado e pode indicar um problema em crescimento
+3. **Crítico** quando a métrica ultrapassa o limite crítico e indica que uma ação de manutenção deve ser executada
+
+Essa funcionalidade garante que os health checks se adaptem ao contexto operacional de cada organização, evitando alertas desnecessários ou regras rígidas que não refletem a realidade do ambiente de dados.
+
